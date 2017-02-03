@@ -7,5 +7,16 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <form method="post">
+      <label>Experiment Name: </label> <input type="text" name="expName" /><br>
+      <label>Training File Absolute Path: </label> <input type="text" name="trainingPath" /> <br>
+      <label>Test File Absolute Path: </label> <input type="text" name="testPath" /> <br>
+      <input type="checkbox" name="NN" value="NN"> Use Neural Net (Multilayer Perceptron)<br>
+      <input type="checkbox" name="DecisionTree" value="DecisionTree"> Use Decision Tree (J48)<br>
+      <label>Confidence Start (Inclusive): </label> <input type="text" name="confStart" />
+      <label>Confidence End (Inclusive): </label> <input type="text" name="confEnd" />
+      <label>Confidence Step Size: </label> <input type="text" name="confStep" /><br>
+      <input type="Submit" />
+    </form>
   </body>
 </html>

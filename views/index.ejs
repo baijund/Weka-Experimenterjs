@@ -12,10 +12,42 @@
       <label>Training File Absolute Path: </label> <input type="text" name="trainingPath" /> <br>
       <label>Test File Absolute Path: </label> <input type="text" name="testPath" /> <br>
       <input type="checkbox" name="NN" value="NN"> Use Neural Net (Multilayer Perceptron)<br>
+      <label>Learning Rate Start (Inclusive): </label> <input type="text" name="learnStart" />
+      <label>Learning Rate End (Inclusive): </label> <input type="text" name="learnEnd" />
+      <label>Learning Rate Step: </label> <input type="text" name="learnStep" /><br>
+      <label>Momentum Start (Inclusive): </label> <input type="text" name="momStart" />
+      <label>Momentum End (Inclusive): </label> <input type="text" name="momEnd" />
+      <label>Momentum Step: </label> <input type="text" name="momStep" /><br>
+      <label>Epoch Start (Inclusive): </label> <input type="text" name="epochStart" />
+      <label>Epoch End (Inclusive): </label> <input type="text" name="epochEnd" />
+      <label>Epoch Step: </label> <input type="text" name="epochStep" /><br>
+
       <input type="checkbox" name="DecisionTree" value="DecisionTree"> Use Decision Tree (J48)<br>
       <label>Confidence Start (Inclusive): </label> <input type="text" name="confStart" />
       <label>Confidence End (Inclusive): </label> <input type="text" name="confEnd" />
       <label>Confidence Step Size: </label> <input type="text" name="confStep" /><br>
+
+      <input type="checkbox" name="Adaboost" value="Adaboost"> Use Boosting With J48 Classifier (Adaboost)<br>
+      <label>Confidence Start (Inclusive): </label> <input type="text" name="confBoostStart" />
+      <label>Confidence End (Inclusive): </label> <input type="text" name="confBoostEnd" />
+      <label>Confidence Step Size: </label> <input type="text" name="confBoostStep" /><br>
+      <label>Iterations Start (Inclusive): </label> <input type="text" name="boostIterStart" />
+      <label>Iterations End (Inclusive): </label> <input type="text" name="boostIterEnd" />
+      <label>Interations Step Size: </label> <input type="text" name="boostIterStep" /><br>
+
+      <input type="checkbox" name="KNN" value="KNN"> Use KNN (IBK) will do both weighted and unweighted<br>
+      <label>Neighbor Start (Inclusive): </label> <input type="text" name="knnStart" />
+      <label>Neighbor End (Inclusive): </label> <input type="text" name="knnEnd" />
+      <label>Neighbor Step Size: </label> <input type="text" name="knnStep" /><br>
+
+      <!-- <input type="checkbox" name="SVM" value="SVM"> Use SVM (LibSVM only works when installed as package in Weka)<br>
+      <label>Polynomial Start (Inclusive): </label> <input type="text" name="polyStart" />
+      <label>Polynomial End (Inclusive): </label> <input type="text" name="polyEnd" />
+      <label>Polynomial Step Size: </label> <input type="text" name="polyStep" /><br>
+      <label>RBF Start (Inclusive): </label> <input type="text" name="rbfStart" />
+      <label>RBF End (Inclusive): </label> <input type="text" name="rbfEnd" />
+      <label>RBF Step Size: </label> <input type="text" name="rbfStep" /><br> -->
+
       <input type="Submit" />
     </form>
   </body>

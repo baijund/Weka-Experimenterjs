@@ -111,99 +111,6 @@ router.post('/', function(req, res, next) {
 
   }
 
-  // if(parms.SVM){
-  //   console.log("SVM was selected. Running Now.");
-  //   fs.mkdirSync(dir+"/SVM");
-  //   var cmd1 = "java -cp ../"+GEN_ARGS1+" -d "+dir+"/SVM/tmpmodel.arff"
-  //   var cmd2 = "java -cp ../weka.jar weka.classifiers.functions.LibSVM"+GEN_ARGS2+" -l "+dir+"/SVM/tmpmodel.arff"
-  //
-  //   var polyStart = parseInt(parms.polyStart);
-  //   var polyStep = parseInt(parms.polyStep);
-  //   var polyEnd = parseInt(parms.polyEnd);
-  //   var rbfStart = parseFloat(parms.rbfStart);
-  //   var rbfStep = parseFloat(parms.rbfStep);
-  //   var rbfEnd = parseFloat(parms.rbfEnd);
-  //
-  //   var out = ""
-  //
-  //   for(i=polyStart; i<=polyEnd; i+=polyStep){
-  //       tempres=""
-  //       var tempCmd = cmd1 + " -K 1 -D " + i
-  //       console.log("----------------------------------------------------------Executing : " + tempCmd+"--------------------------------------------------------")
-  //       var tempOut = cp.execSync(tempCmd, {encoding: "utf-8"}) + "\n-------------------------------------Training polynomial "+i+" finished-------------------------------------";
-  //       tempres+=tempOut
-  //       console.log(tempOut)
-  //       console.log("Executing : " +cmd2)
-  //       tempOut = cp.execSync(cmd2, {encoding: "utf-8"}) + "\n-------------------------------------Testing Model from polynomial "+i+" finished-------------------------------------";
-  //       console.log(tempOut)
-  //       tempres+=tempOut
-  //
-  //
-  //       fs.appendFileSync(dir+"/SVM/running_raw_output.txt", tempres)
-  //       out += tempres
-  //   }
-  //
-  //   for(i=rbfStart; i<=rbfEnd; i+=rbfStep){
-  //       tempres=""
-  //       var tempCmd = cmd1 + " -K 2 -G " + i
-  //       console.log("----------------------------------------------------------Executing : " + tempCmd+"--------------------------------------------------------")
-  //       var tempOut = cp.execSync(tempCmd, {encoding: "utf-8"}) + "\n-------------------------------------Training rbf "+i+" finished-------------------------------------";
-  //       tempres+=tempOut
-  //       console.log(tempOut)
-  //       console.log("Executing : " +cmd2)
-  //       tempOut = cp.execSync(cmd2, {encoding: "utf-8"}) + "\n-------------------------------------Testing Model from rbf "+i+" finished-------------------------------------";
-  //       console.log(tempOut)
-  //       tempres+=tempOut
-  //
-  //
-  //       fs.appendFileSync(dir+"/SVM/running_raw_output.txt", tempres)
-  //       out += tempres
-  //   }
-  //
-  //   fs.outputFileSync(dir+"/SVM/raw_output.txt", out)
-  //
-  // }
-
-
-  if(parms.Adaboost){
-    console.log("Adaboost was selected. Running Now.");
-    fs.mkdirSync(dir+"/Adaboost");
-    var cmd1 = "java -cp ../weka.jar weka.classifiers.meta.AdaBoostM1"+GEN_ARGS1+" -d "+dir+"/Adaboost/tmpmodel.arff"
-    var cmd2 = "java -cp ../weka.jar weka.classifiers.meta.AdaBoostM1"+GEN_ARGS2+" -l "+dir+"/Adaboost/tmpmodel.arff"
-
-    var confStart = parseFloat(parms.confBoostStart);
-    var confStep = parseFloat(parms.confBoostStep);
-    var confEnd = parseFloat(parms.confBoostEnd);
-    var iterStart = parseFloat(parms.boostIterStart);
-    var iterStep = parseFloat(parms.boostIterStep);
-    var iterEnd = parseFloat(parms.boostIterEnd);
-
-    var out = ""
-
-    for(i=confStart; i<=confEnd; i+=confStep){
-      for(j=iterStart; j<=iterEnd; j+=iterStep){
-
-        tempres=""
-        var tempCmd = cmd1 + " -I "+j+" -W weka.classifiers.trees.J48 -- -M 2 -C "+i
-        console.log("----------------------------------------------------------Executing : " + tempCmd+"--------------------------------------------------------")
-        var tempOut = cp.execSync(tempCmd, {encoding: "utf-8"}) + "\n-------------------------------------Training confidence,iterations "+i+","+j+" finished-------------------------------------";
-        tempres+=tempOut
-        console.log(tempOut)
-        console.log("Executing : " +cmd2)
-        tempOut = cp.execSync(cmd2, {encoding: "utf-8"}) + "\n-------------------------------------Testing Model from confidence,iterations "+i+","+j+" finished-------------------------------------";
-        console.log(tempOut)
-        tempres+=tempOut
-
-
-        fs.appendFileSync(dir+"/Adaboost/running_raw_output.txt", tempres)
-        out += tempres
-      }
-    }
-
-    fs.outputFileSync(dir+"/Adaboost/raw_output.txt", out)
-
-  }
-
 
   if(parms.NN){
     console.log("NeuralNet was selected. Running Now.");
@@ -246,6 +153,98 @@ router.post('/', function(req, res, next) {
     }
 
     fs.outputFileSync(dir+"/NeuralNets/raw_output.txt", out)
+
+  }
+
+  if(parms.Adaboost){
+    console.log("Adaboost was selected. Running Now.");
+    fs.mkdirSync(dir+"/Adaboost");
+    var cmd1 = "java -cp ../weka.jar weka.classifiers.meta.AdaBoostM1"+GEN_ARGS1+" -d "+dir+"/Adaboost/tmpmodel.arff"
+    var cmd2 = "java -cp ../weka.jar weka.classifiers.meta.AdaBoostM1"+GEN_ARGS2+" -l "+dir+"/Adaboost/tmpmodel.arff"
+
+    var confStart = parseFloat(parms.confBoostStart);
+    var confStep = parseFloat(parms.confBoostStep);
+    var confEnd = parseFloat(parms.confBoostEnd);
+    var iterStart = parseFloat(parms.boostIterStart);
+    var iterStep = parseFloat(parms.boostIterStep);
+    var iterEnd = parseFloat(parms.boostIterEnd);
+
+    var out = ""
+
+    for(i=confStart; i<=confEnd; i+=confStep){
+      for(j=iterStart; j<=iterEnd; j+=iterStep){
+
+        tempres=""
+        var tempCmd = cmd1 + " -I "+j+" -W weka.classifiers.trees.J48 -- -M 2 -C "+i
+        console.log("----------------------------------------------------------Executing : " + tempCmd+"--------------------------------------------------------")
+        var tempOut = cp.execSync(tempCmd, {encoding: "utf-8"}) + "\n-------------------------------------Training confidence,iterations "+i+","+j+" finished-------------------------------------";
+        tempres+=tempOut
+        console.log(tempOut)
+        console.log("Executing : " +cmd2)
+        tempOut = cp.execSync(cmd2, {encoding: "utf-8"}) + "\n-------------------------------------Testing Model from confidence,iterations "+i+","+j+" finished-------------------------------------";
+        console.log(tempOut)
+        tempres+=tempOut
+
+
+        fs.appendFileSync(dir+"/Adaboost/running_raw_output.txt", tempres)
+        out += tempres
+      }
+    }
+
+    fs.outputFileSync(dir+"/Adaboost/raw_output.txt", out)
+
+  }
+
+  if(parms.SVM){
+    console.log("SVM was selected. Running Now.");
+    fs.mkdirSync(dir+"/SVM");
+    var cmd1 = "java -cp ../weka.jar weka.classifiers.functions.SMO"+GEN_ARGS1+" -d "+dir+"/SVM/tmpmodel.arff"
+    var cmd2 = "java -cp ../weka.jar weka.classifiers.functions.SMO"+GEN_ARGS2+" -l "+dir+"/SVM/tmpmodel.arff"
+
+    var polyStart = parseInt(parms.polyStart);
+    var polyStep = parseInt(parms.polyStep);
+    var polyEnd = parseInt(parms.polyEnd);
+    var rbfStart = parseFloat(parms.rbfStart);
+    var rbfStep = parseFloat(parms.rbfStep);
+    var rbfEnd = parseFloat(parms.rbfEnd);
+
+    var out = ""
+
+    for(i=polyStart; i<=polyEnd; i+=polyStep){
+        tempres=""
+        var tempCmd = cmd1 + " -K \"weka.classifiers.functions.supportVector.PolyKernel -E " + i +"\""
+        console.log("----------------------------------------------------------Executing : " + tempCmd+"--------------------------------------------------------")
+        var tempOut = cp.execSync(tempCmd, {encoding: "utf-8"}) + "\n-------------------------------------Training polynomial "+i+" finished-------------------------------------";
+        tempres+=tempOut
+        console.log(tempOut)
+        console.log("Executing : " +cmd2)
+        tempOut = cp.execSync(cmd2, {encoding: "utf-8"}) + "\n-------------------------------------Testing Model from polynomial "+i+" finished-------------------------------------";
+        console.log(tempOut)
+        tempres+=tempOut
+
+
+        fs.appendFileSync(dir+"/SVM/running_raw_output.txt", tempres)
+        out += tempres
+    }
+
+    for(i=rbfStart; i<=rbfEnd; i+=rbfStep){
+        tempres=""
+        var tempCmd = cmd1 + " -K \"weka.classifiers.functions.supportVector.RBFKernel -G " + i +"\""
+        console.log("----------------------------------------------------------Executing : " + tempCmd+"--------------------------------------------------------")
+        var tempOut = cp.execSync(tempCmd, {encoding: "utf-8"}) + "\n-------------------------------------Training rbf "+i+" finished-------------------------------------";
+        tempres+=tempOut
+        console.log(tempOut)
+        console.log("Executing : " +cmd2)
+        tempOut = cp.execSync(cmd2, {encoding: "utf-8"}) + "\n-------------------------------------Testing Model from rbf "+i+" finished-------------------------------------";
+        console.log(tempOut)
+        tempres+=tempOut
+
+
+        fs.appendFileSync(dir+"/SVM/running_raw_output.txt", tempres)
+        out += tempres
+    }
+
+    fs.outputFileSync(dir+"/SVM/raw_output.txt", out)
 
   }
   res.render('index', { title: 'Weka Runner' });
